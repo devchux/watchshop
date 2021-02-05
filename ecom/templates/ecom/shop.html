@@ -1,0 +1,29 @@
+{% extends 'ecom/base.html' %}
+{% block content %}
+    {% include 'ecom/banner.html' %}
+    <section class="container my-5">
+        <div class="row">
+            {% for item in items %}
+                <div class="col-lg-4 col-md-6 my-4">
+                    <div class="card">
+                        <a href="{% url 'detail' item.id %}" class="product">
+                            <img class="card-img-top" src="{{ item.image.url }}" alt="">
+                        </a>
+                        <div class="card-body border-top">
+                            <div class="row">
+                                <div class="col-10">
+                                    <h4 class="card-title"><a href="details" class="product">{{ item.name }}</a></h4>
+                                </div>
+                                <div class="col-2">
+                                    <a href="#" class="text-dark"><span class="flaticon-heart"></span></a>
+                                </div>
+                            </div>
+                            <p class="card-text text-center my-3">{{ item.price }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+

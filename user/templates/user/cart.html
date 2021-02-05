@@ -1,0 +1,36 @@
+{% extends 'ecom/base.html' %}
+{% block content %}
+{% include 'ecom/banner.html' %}
+    <div class="container my-5">
+        <table class="table text-center bg-white border">
+            <thead>
+                <tr>
+                    <th class="p-4">Product</th>
+                    <th class="p-4">Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4"><img src="{{ order.item.image.url }}" class="img-fluid w-100 h-50" alt=""></div>
+                            <div class="col-lg-8 col-md-8"><h6><a href="{% url 'detail' order.item.id %}">{{ order.item.name }}</a></h6></div>
+                        </div>
+                    </td>
+                    <td>
+                        <p>#{{ order.item.price }}</p>
+                    </td>
+                    <td>
+                        <a href="{% url 'remove_cart' order.id  %}" class="btn btn-warning">Remove</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="cart-button w-100">
+            <a href="#" class="btn btn-block btn-primary w-50 p-3 mx-auto">Make Payment</a>
+        </div>
+    </div>
+{% endblock %}

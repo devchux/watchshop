@@ -1,0 +1,17 @@
+{% extends 'ecom/base.html' %}
+{% block content %}
+{% include 'ecom/banner.html' %}
+        <div class="container my-5">
+            <div class="row bg-white border">
+                <div class="col-lg-5">
+                    <img src="{{ item.image.url }}" class="img-fluid w-100" alt="">
+                </div>
+                <div class="col-lg-7 text-center">
+                    <h1 class="p-4">{{ item.name | title }}</h1>
+                    <p>{{ item.description}}</p>
+                        <h5 class="py-2"># {{ item.price }}</h5>
+                    <a class="btn btn-outline-primary" href="{% url 'add_to_cart' item.id %}">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+{% endblock %}

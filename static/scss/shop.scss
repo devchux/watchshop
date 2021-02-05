@@ -1,0 +1,19 @@
+.card {
+    @extend %shadow;
+
+    #{&}-title a {
+        text-decoration: none;
+        color: #000000 !important;
+    }
+}
+.btn-shop-container {
+
+    [class^="icon-"] {
+        font-size: 0.8rem;
+    }
+    .btn-shop:hover {
+        background-color: transparent;
+        color: $basic-color;
+    }
+}
+

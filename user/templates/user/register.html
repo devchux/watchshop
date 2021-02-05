@@ -1,0 +1,42 @@
+{% extends 'ecom/base.html' %}
+{% block content %}
+{% load static %}
+{% include 'ecom/banner.html' %}
+    <div class="register-form container my-5">
+        <form method="POST" action="{% url 'user-register' %}">
+            {% csrf_token %}
+            <div class="row w-75 mx-auto bg-white rounded py-5">
+                {% for field in form %}
+                    <div class="col-12">
+                        <div class="form-group">
+                            {{ field }}
+                        </div>
+                    </div>
+                    {% if field.errors %}
+                        {{ field.errors }}
+                    {% endif %}
+                {% endfor %}
+                <div class="col-12">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block py-2">Sign Up</button>
+                    </div>
+                </div>
+                <p class="px-3">Already created an account? <a href="{% url 'login' %}">Login</a></p>
+            </div>
+        </form>
+    </div>
+    <script>
+        let inputs = document.querySelectorAll('input');
+        inputs[1].setAttribute('placeholder', 'First Name');
+        inputs[2].setAttribute('placeholder', 'Last Name');
+        inputs[3].setAttribute('placeholder', 'Username');
+        inputs[3].removeAttribute('autofocus');
+        inputs[4].setAttribute('placeholder', 'Email Address');
+        inputs[5].setAttribute('placeholder', 'Password');
+        inputs[6].setAttribute('placeholder', 'Confirm Password');
+        for (input of inputs) {
+            input.setAttribute('class', 'form-control');
+            input.setAttribute('autocomplete', 'off');
+        }
+    </script>
+{% endblock %}

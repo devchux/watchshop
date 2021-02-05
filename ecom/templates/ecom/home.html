@@ -1,0 +1,37 @@
+{% extends 'ecom/base.html' %}
+{% block content %}
+<header class="d-flex flex-column align-items-center justify-content-center text-center">
+    <h1 class="header-heading">Select Your New Perfect Style</h1>
+    <p class="header-paragraph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa dicta tempore sunt quasi...</p>
+    <div class="btn-container">
+        <a href="#latest" class="btn btn-block btn-outline-primary px-5 py-3 font-weight-bold header-btn">LATEST PRODUCTS</a>
+    </div>
+</header>
+<section class="container my-5" id="latest">
+    <div class="row">
+        {% for item in items %}
+            <div class="col-lg-4 col-md-6 my-4">
+                <div class="card">
+                    <a href="{% url 'detail' item.id %}" class="product">
+                        <img class="card-img-top" src="{{ item.image.url }}" alt="">
+                    </a>
+                    <div class="card-body border-top">
+                        <div class="row">
+                            <div class="col-10">
+                                <h4 class="card-title"><a href="details" class="product">{{ item.name }}</a></h4>
+                            </div>
+                            <div class="col-2">
+                                <a href="#" class="text-dark"><span class="flaticon-heart"></span></a>
+                            </div>
+                        </div>
+                        <p class="card-text text-center my-3">{{ item.price }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="btn-shop-container d-flex justify-content-center">
+        <a href="{% url 'shop' %}" class="btn btn-primary px-5 py-4 font-weight-bold btn-shop">VIEW MORE PRODUCTS <span class="icon-chevron-right"></span><span class="icon-chevron-right"></span></a>
+    </div>
+</section>
+{% endblock %}

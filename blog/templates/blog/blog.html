@@ -1,0 +1,61 @@
+{% extends 'ecom/base.html' %} 
+{% block content %} 
+{% include 'ecom/banner.html' %}
+{% load static %}
+<!--================Blog Area =================-->
+<section class="blog_area section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mb-5 mb-lg-0">
+        <div class="blog_left_sidebar">           
+            {% for post in posts %}
+              <div class="post my-5 bg-white rounded">
+                <div class="post-img">
+                    <img src="{{ post.display_pic.url }}" alt="" class="img-fluid w-100">
+                    <div class="post-date">
+                        <h5>{{ post.date_published.date }}</h5>
+                    </div>
+                </div>
+                <div class="content my-3 mx-3">
+                    <h3 class="py-2"><a href="{% url 'blog_detail' post.id %}">{{ post.title }}</a></h3>
+                    <p class="py-3">{{ post.content|truncatewords:"20" }}</p>
+                </div>
+              </div>
+            {% endfor %}
+                
+
+          {% if posts.has_other_pages %}
+          <nav class="blog-pagination justify-content-center d-flex">
+            <ul class="pagination">
+              {% if posts.has_previous %}
+              <li class="page-item">
+                <a href="?page={{ posts.previous_page_number }}" class="page-link" aria-label="Previous">
+                  <i class="ti-angle-left"></i>
+                </a>
+              {% endif %}
+              </li>
+              <li class="page-item">
+                <a href="#" class="page-link">{{ posts.number }}</a>
+              </li>
+              {% if posts.has_next %}
+              <li class="page-item">
+                <a href="?page={{ posts.next_page_number }}" class="page-link" aria-label="Next">
+                  <i class="ti-angle-right"></i>
+                </a>
+              </li>
+              {% endif %}
+            </ul>
+          </nav>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="blog_right_sidebar">
+          {% include 'blog/blog-aside.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--================Blog Area =================-->
+{% endblock %}

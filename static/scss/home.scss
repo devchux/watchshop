@@ -1,0 +1,29 @@
+$basic-color: #007bff;
+
+header {
+  @include banner("../images/banner.png");
+  padding: 15em 0;
+  color: #fff;
+  
+  
+  > .#{&}-heading {
+    font-family: Arial, Helvetica, sans-serif;
+    color: $basic-color;
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-shadow: 1px -1px 1px #fff;
+  } 
+  &  > .#{&}-paragraph {
+    font-size: 1.2rem;
+  }
+  > .#{&}-heading, &  > .#{&}-paragraph {
+    width: 80%;
+  }
+  > .#{&}-heading, &  > .#{&}-paragraph,  > .btn-container {
+    z-index: 99;
+  }
+  p {
+    margin: 3em 0;
+  }
+}

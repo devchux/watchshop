@@ -1,0 +1,56 @@
+{% extends 'ecom/base.html' %}
+{% block content %}
+{% load static %}
+{% include 'ecom/banner.html' %}
+<div class="bg-white rounded p-5 my-5 w-75 mx-auto">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <strong>{{ message }}</strong>
+            </div>
+            {% endfor %}
+        {% endif %}
+    <div class="row">
+        <div class="profile-image col-lg-4">
+            <img src="{{ user.image.url }}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+        </div>
+        <div class="col-lg-8">
+            <form method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-12 p-2">
+                    {{ form1.name }}
+                </div>
+                <div class="col-12 p-2">
+                    {{ form2.username }}
+                </div>
+                <div class="col-12 p-2">
+                    {{ form2.email }}
+                </div>
+                <div class="col-12 p-2">
+                    {{ form1.image }}
+                </div>
+                <div class="col-12 p-2">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block py-2">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    let inputs = document.querySelectorAll('input');
+    inputs[1].setAttribute('placeholder', 'Full Name');
+    inputs[2].setAttribute('placeholder', 'Username');
+    inputs[3].setAttribute('placeholder', 'Email');
+    inputs[4].setAttribute('placeholder', 'image');
+    for (input of inputs) {
+        input.setAttribute('class', 'form-control');
+        input.setAttribute('autocomplete', 'off');
+    }
+</script>
+{% endblock %}

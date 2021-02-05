@@ -1,0 +1,66 @@
+{% load static %}
+  <div class="recent-post mt-lg-5 bg-white border">
+      <h3 class="widget_title border-bottom p-3">Recent posts</h3>
+      {% for post in recent_post %}
+      <div class="row p-3">
+          <div class="col-4">
+              <img src="{{ post.display_pic.url }}" alt="" class="img-fluid">
+          </div>
+          <div class="col-8">
+              <h6><a href="{% url 'blog_detail' post.id %}">{{ post.title|truncatechars:"20" }}</a></h6>
+              <p>{{ post.date_published.date }}</p>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+
+
+  <aside class="mt-lg-5 bg-white newsletter_widget my-3">
+    <h4 class="widget_title border-bottom p-3">Newsletter</h4>
+
+    <form action="#">
+      <div class="form-group">
+        <input
+          type="email"
+          class="form-control"
+          onfocus="this.placeholder = ''"
+          onblur="this.placeholder = 'Enter email'"
+          placeholder="Enter email"
+          required
+        />
+      </div>
+      <button
+        class="btn btn-block rounded-0 btn-primary"
+        type="submit"
+      >
+        Subscribe
+      </button>
+    </form>
+  </aside>
+
+  <div class="comment-form my-4">
+      <h4 class="p-3 border-bottom">Leave a Reply</h4>
+      <form class="form-contact comment_form" action="#" id="commentForm">
+        <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                  <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
+                    placeholder="Write Comment"></textarea>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                  <input class="form-control" name="name" id="name" type="text" placeholder="Name">
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                  <input class="form-control" name="email" id="email" type="email" placeholder="Email">
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-block btn-primary py-2">Send Message</button>
+        </div>
+      </form>
+  </div>

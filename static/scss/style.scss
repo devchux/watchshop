@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans:200,300,400,500,600,700|Pacifico:100,300,400,500,700&display=swap");
+$basic-font: "Josefin Sans", sans-serif;
+$basic-color: #007bff;
+@import 'banner-mixin';
+
+* {
+    font-family: $basic-font !important;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+body {
+    background-color: #f0f0f0;
+}
+.navbar-nav .nav-item .nav-link {
+    color: #111111;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 900;
+    &:hover {
+        color: $basic-color;
+    }
+}
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.8rem;
+    &, & .text-primary {
+        font-family: 'Pacifico','times new roman', times, serif !important;
+    }
+}
+[class^="icon-"] {
+    font-size: 1.2rem;
+}
+.banner-area {
+    @include banner('../images/banner_small.png');
+    color: #ffffff;
+    text-transform: uppercase;
+    padding: 10em 0;
+    h2 {
+        z-index: 99;
+    }
+}
+%shadow {
+    box-shadow: 1px 1px 2px 1px #7e7e7e !important;
+}
+.navbar, footer {
+    @extend %shadow;
+}
+footer {
+ [class^="flaticon-"] {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 900;
+
+    &:hover {
+        color: $basic-color;
+    }
+  }
+}
+.errorlist {
+    padding: 0 1.5em;
+    li {
+        color: red;
+    }
+}
+@import 'home';
+@import 'shop';
+@import 'blog';
